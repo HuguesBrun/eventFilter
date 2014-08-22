@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 
-process = cms.Process("copyy")
+process = cms.Process("copy")
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
 #process.load("hbrun.HughFilter.HughFilter_cfi.py")
 process.load("Configuration.StandardSequences.Services_cff")
@@ -10,12 +10,12 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.load("Configuration.StandardSequences.Reconstruction_cff")
 process.GlobalTag.globaltag = 'PRE_P62_V10::All'
 process.MessageLogger.cerr.threshold = 'INFO'
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-# '/store/group/comm_trigger/TriggerStudiesGroup/Skims/Top/SingleTop/SingleMu/pickevents_SingleTopMu_1_1_V4D.root'
- 'file:MYCOPY.root'
+ '/store/user/hbrun/recup_620MuSimsRAWRECO_v2/filesRecup/theRECOfile.root'
+# 'file:MYCOPY.root'
 )
 )
 
@@ -25,10 +25,10 @@ process.maxEvents = cms.untracked.PSet(
 
 process.HughFilter = cms.EDFilter("filterTheEvents",
 	runsToKeep = cms.vint32(
-		203894, 203894
+		1,1
 	),
 	eventsToKeep= cms.vint32(
-		78710089, 136304875
+		35252,35534
 	)
 
 )
